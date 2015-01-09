@@ -2,7 +2,7 @@
 
 <metacity_theme>
 <info>
-  <name>Radiant-MATE</name>
+  <name>Radiant-Revamped</name>
   <author>Kenneth Wimer, James Schriver, Andrea Cimitan</author>
   <copyright>Canonical Ltd.</copyright>
   <date>June, 2011</date>
@@ -265,16 +265,16 @@
 
 <!-- button prelightlays -->
 <draw_ops name="menu_focused_normal">
-  <image filename="menu.png" x="0" y="1" width="object_width" height="object_height"/>
+    <icon  x="0" y="1" width="mini_icon_width" height="mini_icon_height"/>
 </draw_ops>
 <draw_ops name="menu_focused_prelight">
-   <image filename="menu_prelight.png" x="0" y="1" width="object_width" height="object_height"/>
+    <icon  x="0" y="1" width="mini_icon_width" height="mini_icon_height"/>
 </draw_ops>
 <draw_ops name="menu_unfocused_normal">
-    <image filename="menu.png" x="0" y="1" width="object_width" height="object_height"/>
+    <icon  x="0" y="1" width="mini_icon_width" height="mini_icon_height"/>
 </draw_ops>
 <draw_ops name="menu_unfocused_prelight">
-    <image filename="menu_prelight.png" x="0" y="1" width="object_width" height="object_height"/>
+    <icon  x="0" y="1" width="mini_icon_width" height="mini_icon_height"/>
 </draw_ops>
 <draw_ops name="minimize_focused_normal">
   <image filename="minimize_focused_normal.png" x="0" y="1" width="object_width" height="object_height"/>
