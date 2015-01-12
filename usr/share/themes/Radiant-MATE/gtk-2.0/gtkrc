@@ -306,8 +306,8 @@ style "toolbar-button" = "notebook_button" {
 }
 
 style "menu" {
-	xthickness = 0
-	ythickness = 0
+	xthickness = 1
+	ythickness = 1
 
 	engine "murrine"
 	{
@@ -360,7 +360,7 @@ style "scale_menu_item" = "scale" {
 # 2. The line should go to the edges (ie. no border at the left/right)
 style "separator_menu_item" {
 	xthickness = 1
-	ythickness = 0
+	ythickness = 1
 
 	GtkSeparatorMenuItem::horizontal-padding = 0
 	GtkWidget::wide-separators = 1

@@ -5,7 +5,7 @@ Comment=Radiant-Revamped theme
 Encoding=UTF-8
 
 [X-GNOME-Metatheme]
-GtkTheme=Radiant-MATE
+GtkTheme=Radiant-Revamped
 MetacityTheme=Radiant-Revamped
 IconTheme=Radiant-MATE
 CursorTheme=DMZ-White
