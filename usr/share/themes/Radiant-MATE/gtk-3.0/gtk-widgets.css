@@ -28,7 +28,7 @@
     -GtkRange-stepper-spacing: 0;
     -GtkScale-trough-border: 0;
     -GtkScrollbar-activate-slider: 1;
-    -GtkScrollbar-trough-border: 0;
+    -GtkScrollbar-trough-border: 1;
     -GtkScrollbar-min-slider-length: 31;
     -GtkScrolledWindow-scrollbar-spacing: 0;
     -GtkScrolledWindow-scrollbars-within-bevel: 1;
@@ -1218,33 +1218,48 @@ GtkScale.mark {
  *************/
 .scrollbar,
 .scrollbar.vertical {
-    -GtkScrollbar-has-backward-stepper: 0;
-    -GtkScrollbar-has-forward-stepper: 0;
-    -GtkRange-slider-width: 14;
+    -GtkScrollbar-has-backward-stepper: 1;
+    -GtkScrollbar-has-forward-stepper: 1;
+    -GtkRange-slider-width: 13;
+    -GtkRange-arrow-scaling: 0.7;
+    -GtkRange-trough-under-steppers: 0;
 
     border-radius: 20px;
 
     border-image: none;
 }
 
+
 .scrollbar.trough,
 .scrollbar.trough.vertical {
-    border-color: shade (@bg_color, 0.8);
+    border-radius: 20px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: shade (@bg_color, 0.86);
+    background-image: -gtk-gradient (linear, left top, left bottom,
+                                     from (#d1d1d1),
+                                     to (#e8e8e8));
+    /*background-image: -gtk-gradient (linear, left top, right top,
+                                     from (shade (@button_bg_color, 1.08)),
+                                     to (shade (@button_bg_color, 0.94)));*/
+    box-shadow: none;
 }
 
 .scrollbar.slider,
 .scrollbar.slider:hover,
-.scrollbar.button,
 .scrollbar.slider.vertical,
-.scrollbar.slider.vertical:hover,
-.scrollbar.button.vertical {
+.scrollbar.slider.vertical:hover {
     border-width: 1px;
     border-style: solid;
     border-color: shade (@bg_color, 0.86);
-    background-image: -gtk-gradient (linear, left top, right top,
-                                     from (shade (@button_bg_color, 1.08)),
-                                     color-stop (0.5, @button_bg_color),
-                                     to (shade (@button_bg_color, 0.94)));
+	background-repeat: no-repeat;
+	background-position: center center;
+    background-color: @button_bg_color;
+    background-image: url("assets/scrollbar_handle_vertical.png");
+    /*background-image: linear-gradient(to right,
+	                      alpha (@button_bg_color, 1.08) 50%,
+	                      alpha (@button_bg_color, 0.94)),
+                      url("assets/scrollbar_handle_vertical.png");*/
     box-shadow: inset 1px 0 shade (@bg_color, 1.1),
                 inset -1px 0 shade (@bg_color, 1.01),
                 inset 0 1px shade (@bg_color, 1.1),
@@ -1252,20 +1267,59 @@ GtkScale.mark {
 }
 
 .scrollbar.slider.horizontal,
-.scrollbar.slider.horizontal:hover,
-.scrollbar.button.horizontal {
-    background-image: -gtk-gradient (linear, left top, left bottom,
-                                     from (shade (@button_bg_color, 1.08)),
-                                     color-stop (0.5, @button_bg_color),
-                                     to (shade (@button_bg_color, 0.94)));
+.scrollbar.slider.horizontal:hover {
+    border-width: 1px;
+    border-style: solid;
+    border-color: shade (@bg_color, 0.86);
     box-shadow: inset 1px 0 shade (@bg_color, 1.1),
                 inset -1px 0 shade (@bg_color, 1.1),
                 inset 0 1px shade (@bg_color, 1.1),
                 inset 0 -1px shade (@bg_color, 1.01);
 }
 
-.scrollbar.button,
+.scrollbar.button {
+    background-image: none;
+	background-color: transparent;
+
+    border-radius: 20px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: shade (@bg_color, 0.86);
+}
+
+.scrollbar.button:active {
+    /*background-color: #000080;
+	background-color: transparent;*/
+}
+
+.scrollbar.button:hover {
+    /*background-color: #000080;
+	background-color: transparent;*/
+}
+
 .scrollbar.button:insensitive {
+    /*background-image: none;
+	background-color: transparent;*/
+}
+
+.scrollbar.button.top {
+	border-radius: 20px 20px 0px 0px;
+	border-bottom: none;
+}
+
+.scrollbar.button.bottom {
+	border-radius: 0px 0px 20px 20px;
+	border-top: none;
+}
+
+.scrollbar.button.left {
+	border-radius: 20px 0px 0px 20px;
+	border-right: none;
+}
+
+.scrollbar.button.right {
+	border-radius: 0px 20px 20px 0px;
+	border-left: none;
 }
 
 /* overlay scrollbar */

@@ -560,3 +560,26 @@
     background-image: url("assets/slider-right-backdrop-disabled.png");
 }*/
 
+
+/*********************
+ * GtkScrollbar's slider *
+ *********************/
+/*
+.scrollbar.slider,
+.scrollbar.slider.horizontal {
+    background-image: -gtk-gradient (linear, left top, left bottom,
+                                     from (shade (@button_bg_color, 1.08)),
+                                     color-stop (0.5, @button_bg_color),
+                                     to (shade (@button_bg_color, 0.94))),
+                      url("assets/scrollbar_handle.png");
+}
+
+.scrollbar.slider.vertical {
+    background-image: -gtk-gradient (linear, left top, right top,
+                                     from (shade (@button_bg_color, 1.08)),
+                                     color-stop (0.5, @button_bg_color),
+                                     to (shade (@button_bg_color, 0.94))),
+                      url("assets/scrollbar_handle_vertical.png");
+}
+*/
+
