@@ -11,8 +11,8 @@
     -GtkEntry-inner-border: 2;
     -GtkEntry-progress-border: 0;
     -GtkExpander-expander-size: 8;
-    -GtkHTML-link-color: @link_color;
-    -GtkIMHtml-hyperlink-color: @link_color;
+    -GtkHTML-link-color: #a7bb85; /* @link_color */
+    -GtkIMHtml-hyperlink-color: #a7bb85; /* @link_color */
     -GtkMenu-horizontal-padding: 0;
     -GtkMenu-vertical-padding: 5px;
     -GtkMenuBar-internal-padding: 0;
@@ -27,14 +27,11 @@
     -GtkRange-trough-under-steppers: 1;
     -GtkRange-stepper-spacing: 0;
     -GtkScale-trough-border: 0;
-    -GtkScrollbar-activate-slider: 1;
-    -GtkScrollbar-trough-border: 0;
-    -GtkScrollbar-min-slider-length: 31;
     -GtkScrolledWindow-scrollbar-spacing: 0;
     -GtkScrolledWindow-scrollbars-within-bevel: 1;
     -GtkSeparatorMenuItem-horizontal-padding: 0;
     -GtkStatusbar-shadow-type: none;
-    -GtkTextView-error-underline-color: @error_color;
+    -GtkTextView-error-underline-color: #df382c; /* @error_color */
     -GtkToolButton-icon-spacing: 6;
     -GtkToolItemGroup-expander-size: 11;
     -GtkToolbar-internal-padding: 0;
@@ -42,8 +39,8 @@
     -GtkTreeView-vertical-separator: 0;
     -GtkWidget-separator-width: 2;
     -GtkWidget-separator-height: 2;
-    -GtkWidget-link-color: @link_color;
-    -GtkWidget-visited-link-color: @link_color;
+    -GtkWidget-link-color: #a7bb85; /* @link_color */
+    -GtkWidget-visited-link-color: #a7bb85; /* @link_color */
     -GtkWindow-resize-grip-width: 0;
     -GtkWindow-resize-grip-height: 0;
     -WnckTasklist-fade-overlay-rect: 0;
@@ -60,27 +57,6 @@
 
 .background:backdrop {
     color: @backdrop_fg_color;
-}
-
-/* LP: #1285783 */
-GtkScrolledWindow {
-    background-color: @bg_color;
-}
-
-GtkPaned {
-    background-color: @bg_color;
-}
-
-/* Background hack to make DejaDup Assistant windows not turn black when
- * overlay scrollbars are enabled.
- */
-Assistant GtkEventBox {
-    background-color: @bg_color;
-}
-
-/* ... and for Evolution's mail preferences window */
-EPreferencesWindow GtkNotebook GtkAlignment GtkVBox {
-    background-color: @bg_color;
 }
 
 /*************
@@ -1017,7 +993,7 @@ GtkProgressBar {
     border-radius: 8px;
     border-width: 0px;
     background-image: none;
-    background-color: #db6a3c;
+    background-color: #8FAF53;
     border-style: solid;
 }
 
@@ -1031,7 +1007,7 @@ GtkProgressBar {
     border-radius: 8px;
     border-width: 0px;
     background-image: none;
-    background-color: #b0b0b0;
+    background-color: @backdrop_filling_bg;
 }
 
 .scale.highlight.left:insensitive {
@@ -1087,7 +1063,7 @@ GtkLevelBar.vertical {
     border-style: solid;
 
     border-color: @selected_bg_color;
-    background-color: #db6a3c;
+    background-color: #8FAF53;
 }
 
 .level-bar.indicator-continuous.fill-block {
@@ -1098,8 +1074,8 @@ GtkLevelBar.vertical {
 .level-bar.fill-block:backdrop,
 .level-bar.fill-block.level-high:backdrop,
 .level-bar.fill-block.level-low:backdrop {
-    background-color: #b0b0b0;
-    border-color: #b0b0b0;
+    background-color: @backdrop_filling_bg;
+    border-color: @backdrop_filling_bg;
     background-image: none;
 }
 
@@ -1152,7 +1128,7 @@ GtkScale.vertical {
 }
 
 .scale.trough.highlight {
-    background-color: #df784e;
+    background-color: #8FAF53;
     background-image: none;
     background-clip: content-box;
 }
@@ -1182,72 +1158,41 @@ GtkScale.mark {
 /*************
  * scrollbar *
  *************/
-.scrollbar,
-.scrollbar.vertical {
-    -GtkScrollbar-has-backward-stepper: 0;
-    -GtkScrollbar-has-forward-stepper: 0;
-    -GtkRange-slider-width: 14;
+.scrollbar {
+    -GtkScrollbar-has-backward-stepper: 1;
+    -GtkScrollbar-has-forward-stepper: 1;
+    -GtkScrollbar-trough-border: 0;
+    -GtkScrollbar-min-slider-length: 31;
+    -GtkRange-slider-width: 10;
 
-    border-radius: 20px;
-
-    border-image: none;
+    border: none;
 }
 
-.scrollbar.trough,
-.scrollbar.trough.vertical {
-    border-color: shade (@bg_color, 0.8);
+.scrollbar:hover,
+.scrollbar.dragging {
+    -GtkRange-slider-width: 10;
+    background-color: @scrollbar_track_color;
 }
 
-.scrollbar.slider,
-.scrollbar.slider:hover,
-.scrollbar.button,
-.scrollbar.slider.vertical,
-.scrollbar.slider.vertical:hover,
-.scrollbar.button.vertical {
-    border-width: 1px;
-    border-style: solid;
-    border-color: shade (@bg_color, 0.86);
-    background-image: -gtk-gradient (linear, left top, right top,
-                                     from (shade (@button_bg_color, 1.08)),
-                                     color-stop (0.5, @button_bg_color),
-                                     to (shade (@button_bg_color, 0.94)));
-    box-shadow: inset 1px 0 shade (@bg_color, 1.1),
-                inset -1px 0 shade (@bg_color, 1.01),
-                inset 0 1px shade (@bg_color, 1.1),
-                inset 0 -1px shade (@bg_color, 1.1);
+.scrollbar.slider {
+    background-color: alpha(@selected_bg_color, 0.8);
+    border-radius: 8px;
 }
 
-.scrollbar.slider.horizontal,
-.scrollbar.slider.horizontal:hover,
-.scrollbar.button.horizontal {
-    background-image: -gtk-gradient (linear, left top, left bottom,
-                                     from (shade (@button_bg_color, 1.08)),
-                                     color-stop (0.5, @button_bg_color),
-                                     to (shade (@button_bg_color, 0.94)));
-    box-shadow: inset 1px 0 shade (@bg_color, 1.1),
-                inset -1px 0 shade (@bg_color, 1.1),
-                inset 0 1px shade (@bg_color, 1.1),
-                inset 0 -1px shade (@bg_color, 1.01);
-}
-
-/* overlay scrollbar */
-OsThumb {
-    color: shade (@fg_color, 1.6);
-}
-
-OsThumb:selected,
-GtkScrollbar:selected {
+.scrollbar.slider:active {
     background-color: @selected_bg_color;
 }
 
-OsThumb:active,
-GtkScrollbar:active {
-    background-color: shade (@bg_color, 0.6);
+.scrollbar.slider:backdrop {
+    background-color: alpha(@backdrop_filling_bg, 0.8);
 }
 
-OsThumb:insensitive,
-GtkScrollbar:insensitive {
-    background-color: shade (@bg_color, 0.85);
+.scrollbar.slider:hover:backdrop {
+    background-color: alpha(@backdrop_filling_bg, 0.85);
+}
+
+.scrollbar.slider:active:backdrop {
+    background-color: @backdrop_filling_bg;
 }
 
 /*******************
@@ -1341,12 +1286,31 @@ GtkComboBox .menuitem.separator {
 /***********
  * sidebar *
  ***********/
-.sidebar row:selected {
+GtkPlacesSidebar.sidebar .view {
+    background-color: shade (@bg_color, 0.95);
+
+    color: @fg_color;
+    text-shadow: 0 1px shade (shade (@bg_color, 0.95), 1.04);
+}
+
+GtkPlacesSidebar.sidebar:backdrop {
+    color: mix (@fg_color, shade (@bg_color, 0.95), 0.2);
+    text-shadow: 0 1px shade (shade (@bg_color, 0.95), 1.02);
+}
+
+GtkPlacesSidebar.sidebar row:selected {
+    color: @selected_fg_color;
     text-shadow: 0 1px shade (@selected_bg_color, 0.7);
 }
 
-.sidebar .frame {
-    border-width: 0;
+GtkPlacesSidebar.sidebar row:selected:backdrop {
+    background-image: -gtk-gradient (linear, left top, left bottom,
+                                     from (shade (shade (@bg_color, 0.95), 0.94)),
+                                     to (shade (shade (@bg_color, 0.95), 0.86)));
+    border-top-color: shade (shade (@bg_color, 0.95), 0.88);
+
+    color: @fg_color;
+    text-shadow: 0 1px shade (shade (@bg_color, 0.95), 0.96);
 }
 
 /**************
@@ -1653,6 +1617,7 @@ GtkTextView {
     color: @dark_fg_color;
     text-shadow: 0 -1px shade (@dark_bg_color, 0.7);
     border-image-source: url("assets/radiance-button-toolbar.png");
+    padding: 9px;
 }
 
 .primary-toolbar .button.flat {
@@ -1970,6 +1935,15 @@ GtkViewport.frame {
     background: none;
 }
 
+/* Floating bars */
+.floating-bar {
+    background-color: @info_bg_color;
+    border-radius: 3px 3px 0 0;
+    border-style: solid;
+    border-width: 1px;
+    border-color: darker (@info_bg_color);
+}
+
 
 /* OSD overlays */
 .osd,
@@ -2009,6 +1983,32 @@ GtkViewport.frame {
     margin-right: 9px;
 }
 
+/*************
+ * overshoot *
+ *************/
+.overshoot.top {
+    background: -gtk-gradient(radial, center top, 0, center top, 0.7, from(shade(@bg_color, 0.92)), to(alpha(@bg_color, 0.0)));
+}
+
+.overshoot.right {
+    background: -gtk-gradient(radial, right center, 0, right center, 0.7, from(shade(@bg_color, 0.92)), to(alpha(@bg_color, 0.0)));
+}
+
+.overshoot.bottom {
+    background: -gtk-gradient(radial, center bottom, 0, center bottom, 0.7, from(shade(@bg_color, 0.92)), to(alpha(@bg_color, 0.0)));
+}
+
+.overshoot.left {
+    background: -gtk-gradient(radial, left center, 0, left center, 0.7, from(shade(@bg_color, 0.92)), to(alpha(@bg_color, 0.0)));
+}
+
+/**************
+ * undershoot *
+ **************/
+.undershoot {
+    background: none;
+}
+
 /*****************************************************************************
  * states [please keep this section at the end of the file (CSS precedence)] *
  *****************************************************************************/
@@ -2031,3 +2031,7 @@ GtkViewport.frame {
     color: @backdrop_selected_fg_color;
 }
 
+*:link,
+*:visited {
+    color: #a7bb85; /* @link_color */
+}
